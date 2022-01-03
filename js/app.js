@@ -29,9 +29,22 @@ cast.forEach(person => {
     item.appendChild(personName);
 
     // adicionar o <li> à <ul>
+    // existem formas melhores, como usando um framework tipo React
     castlist.appendChild(item);
 });
 
+// ------------------------------------
+
+document.querySelector('main').innerHTML = '';
+
+fetch('https://api.github.com/users/lucascaton/repos?per_page=100')
+  .then(response => response.json())
+  .then(repos => repos.forEach(repo => {
+    let item = document.createElement("li");
+    var repoName = document.createTextNode(repo.name);
+    item.appendChild(repoName);
+    document.querySelector('main').appendChild(item);
+}));
 
 // Exemplos:
 
@@ -42,4 +55,4 @@ cast.forEach(person => {
     // console.log(new Date());
 
     // 'toggle' é um metodo de off/on, como click de habilitar e desabilitar.
-    // document.body.classList.toggle('dark');
+    // document.body.classList.toggle('dark'):
